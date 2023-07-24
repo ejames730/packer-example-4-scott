@@ -1,7 +1,7 @@
-## packer-example-4-scott
+# packer-example-4-scott
 This is a Packer template written in HashiCorp Configuration Language (HCL) that defines a Packer build configuration for creating a custom Windows Server 2019 image on Google Cloud Platform (GCP). Packer is a tool used for creating machine images for multiple platforms, and in this case, it is used to create a customized Windows Server 2019 image with specific configurations and software installations.
 
-# Let's break down the template section by section:
+## Let's break down the template section by section:
 
 Variables: This section defines various input variables that can be used to customize the image creation process. Users can provide their desired values for these variables while running Packer.
 
@@ -13,7 +13,7 @@ source "googlecompute": This section defines the Google Cloud Platform as the so
 
 build: This section defines the build process. It uses the source defined in the previous section to create a Google Cloud instance, customizes it by running PowerShell scripts, and then saves it as a new image.
 
-# Inside the "build" section, there are two provisioners used to customize the instance:
+## Inside the "build" section, there are two provisioners used to customize the instance:
 
 provisioner "file": This provisioner copies files from the local machine to the instance. It copies Windows installer files from "./Software_tools/installers/Windows" to "C:\installers\" on the Google Cloud instance.
 
