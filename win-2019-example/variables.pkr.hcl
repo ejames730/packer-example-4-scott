@@ -15,7 +15,7 @@ variable "vpc_network" {
 
 variable "subnetwork" {
   type    = string
-  default = "us-west2"
+  default = "images-vpc-subnet1"
 }
 
 variable "project" {
