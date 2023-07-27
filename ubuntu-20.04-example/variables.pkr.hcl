@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "mynewimage-win-2019-with-bginfo"
+  default = "mynewimage-ubuntu-20.04-with-nettools"
 }
 
 variable "zone" {
@@ -25,7 +25,7 @@ variable "project" {
 
 variable "source_image_family" {
   type    = string
-  default = "windows-2019"
+  default = "ubuntu-pro-2004-lts"
 }
 
 variable "machine-type" {
@@ -55,12 +55,12 @@ variable "ssh_timeout" {
 
 variable "image_name" {
   type    = string
-  default = "myimage-base-server-2019-with-bginfo"
+  default = "mynewimage-ubuntu-2004-with-nettools"
 }
 
 variable "image_description" {
   type    = string
-  default = "Windows 2019 Server Built with Packer"
+  default = "Ubuntu 20.04 Server Built with Packer"
 }
 
 variable "communicator" {

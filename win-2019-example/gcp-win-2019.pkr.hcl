@@ -44,7 +44,7 @@ build {
 
 # Copies files from the REPO to the local drive on the Windows Machine.
   provisioner "file" {
-    source      = "./Software_tools/installers/Windows"
+    source      = "../Software_tools/installers/Windows"
     destination = "C:\\installers\\"
   }
 # Disables UAC -- Only use if your application really needs it.
@@ -53,7 +53,7 @@ build {
     elevated_password = ""       # Try ""
     #remote_env_var_path = "C:/installers/"
     execute_command = "powershell -executionpolicy bypass"
-    script          = "./Software_tools/installers/Windows/uac_off.ps1" # double .. rolls up one folder
+    script          = "../Software_tools/installers/Windows/uac_off.ps1" # double .. rolls up one folder
   }
 # Reboot Step
   provisioner "windows-restart" {} # reboot for UAC change
@@ -64,7 +64,7 @@ build {
     elevated_password = ""       # Try ""
     #remote_env_var_path = "C:/installers/"
     execute_command = "powershell -executionpolicy bypass"
-    script          = "./Software_tools/installers/Windows/uac_on.ps1" # double .. rolls up one folder
+    script          = "../Software_tools/installers/Windows/uac_on.ps1" # double .. rolls up one folder
   }
 
 }
