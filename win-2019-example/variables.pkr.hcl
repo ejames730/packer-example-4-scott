@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "mynewimage-win-2019-with-bginfo
+  default = "mynewimage-win-2019-with-bginfo"
 }
 
 variable "zone" {
