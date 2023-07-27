@@ -1,73 +1,3 @@
-variable "name" {
-  type    = string
-  default = "mynewimage-win-2019-with-security-suite"
-}
-
-variable "zone" {
-  type    = string
-  default = "us-west2-b"
-}
-
-variable "vpc_network" {
-  type    = string
-  default = "shared-prod-vpc"
-}
-
-variable "subnetwork" {
-  type    = string
-  default = "private-us-west2--prod-subnet"
-}
-
-variable "project" {
-  type    = string
-  default = "image-repo-it-systems"
-}
-
-variable "source_image_family" {
-  type    = string
-  default = "windows-2019"
-}
-
-variable "machine-type" {
-  type    = string
-  default = "n1-standard-4"
-}
-
-variable "packer_username" {
-  type    = string
-  default = "packer"
-}
-
-variable "packer_user_password" {
-  type    = string
-  default = "I am a very secure Pas!"
-}
-
-variable "disk_size" {
-  type    = number
-  default = 100
-}
-
-variable "ssh_timeout" {
-  type    = string
-  default = "1h"
-}
-
-variable "image_name" {
-  type    = string
-  default = "myimage-base-server-2019-with-security-suite"
-}
-
-variable "image_description" {
-  type    = string
-  default = "Windows 2019 Server Built with Packer"
-}
-
-variable "communicator" {
-  type    = string
-  default = "ssh"
-}
-
 packer {
   required_plugins {
     googlecompute = {
@@ -112,11 +42,12 @@ build {
   name    = "windows-2019-google-cloud"
   sources = ["sources.googlecompute.windows-2019-google-cloud"]
 
+# Copies files from the REPO to the local drive on the Windows Machine.
   provisioner "file" {
     source      = "./Software_tools/installers/Windows"
     destination = "C:\\installers\\"
   }
-
+# Disables UAC -- Only use if your application really needs it.
   provisioner "powershell" {
     elevated_user     = "SYSTEM" # try using SYSTEM
     elevated_password = ""       # Try ""
@@ -124,7 +55,16 @@ build {
     execute_command = "powershell -executionpolicy bypass"
     script          = "./Software_tools/installers/Windows/uac_off.ps1" # double .. rolls up one folder
   }
-
+# Reboot Step
   provisioner "windows-restart" {} # reboot for UAC change
+
+  # Enables UAC -- You need this to be on.
+  provisioner "powershell" {
+    elevated_user     = "SYSTEM" # try using SYSTEM
+    elevated_password = ""       # Try ""
+    #remote_env_var_path = "C:/installers/"
+    execute_command = "powershell -executionpolicy bypass"
+    script          = "./Software_tools/installers/Windows/uac_on.ps1" # double .. rolls up one folder
+  }
 
 }
