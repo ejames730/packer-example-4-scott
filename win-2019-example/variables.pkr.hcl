@@ -10,12 +10,12 @@ variable "zone" {
 
 variable "vpc_network" {
   type    = string
-  default = "shared-prod-vpc"
+  default = "images-vpc"
 }
 
 variable "subnetwork" {
   type    = string
-  default = "private-us-west2--prod-subnet"
+  default = "us-west2"
 }
 
 variable "project" {
