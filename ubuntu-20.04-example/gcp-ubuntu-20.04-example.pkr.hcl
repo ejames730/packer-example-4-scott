@@ -11,7 +11,7 @@ locals {
   hostname = "${var.name}"
 }
 
-source "googlecompute" "ubuntu-2019-google-cloud" {
+source "googlecompute" "ubuntu-2004-google-cloud" {
   instance_name       = local.hostname
   image_name          = "${var.image_name}-${formatdate("MMDDYYYY", timestamp())}"
   image_description   = "${var.image_description}-${formatdate("MMDDYYYY", timestamp())}"
@@ -39,7 +39,7 @@ source "googlecompute" "ubuntu-2019-google-cloud" {
 
 build {
   name    = "ubuntu-pro-2004-lts"
-  sources = ["sources.googlecompute.ubuntu-pro-2004-lts"]
+  sources = ["sources.googlecompute.ubuntu-2004-google-cloud"]
 
 # Copies files from the REPO to the local drive on the ubuntu Machine.
   provisioner "file" {

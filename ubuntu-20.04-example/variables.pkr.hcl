@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "mynewimage-ubuntu-20.04-with-nettools"
+  default = "mynewimage-ubuntu-2004-with-nettools"
 }
 
 variable "zone" {
